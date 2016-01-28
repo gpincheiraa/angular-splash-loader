@@ -9,6 +9,9 @@
   function isNumber(arg){
     return Object.prototype.toString.call(arg) === '[object Number]';
   }
+  function isBoolean(arg){
+    return Object.prototype.toString.call(arg) === '[object Boolean]';
+  }
   //Definition of module and run function
   angular
     .module('ngSplashLoader',[])
@@ -26,9 +29,7 @@
                           <div id="spinner"></div>\
                       </section>\
                       <section id="message-wrap">\
-                        <div id="header-wrap">\
-                          <h1 id="loading-msg">{{vm.message}}</h1>\
-                        </div>\
+                        <h1 id="loading-msg">{{vm.message}}</h1>\
                       </section>\
                   </div>';
     $templateCache.put('loadSplash.html', template);
@@ -42,13 +43,18 @@
   function Provider(){
     var _messages = ['Message 1', 'Message 2'],
         _typingSpeed = 100,
-        _logo = 'https://dinex.cl/webapp/img/dinex-icon-color-alpha-shadow.svg';
+        _logo = 'https://dinex.cl/webapp/img/dinex-icon-color-alpha-shadow.svg',
+        _disableTyping = false,
+        _messagesInterval = 5000;
     
     getter.$inject = ['$document','$compile','$rootScope'];
     
     this.setMessages = setMessages;
     this.setLogoSrc = setLogo;
     this.setTypingSpeed = setTypingSpeed;
+    this.setDisableTyping = setDisableTyping;
+    this.setMessagesInterval = setMessagesInterval;
+
     this.$get = getter;
     
     //Getter
@@ -59,6 +65,9 @@
       function SplashLoader(){
         this.messages = _messages;
         this.logoSrc = _logo;
+        this.typingSpeed = _typingSpeed;
+        this.disableTyping = _disableTyping;
+        this.messagesInterval = _messagesInterval;
       }
       
       SplashLoader.prototype.open = function(){
@@ -72,6 +81,10 @@
     }
     
     //Setters
+    function setLogo(logoSrc){
+      _logo = logoSrc;
+    }
+
     function setMessages(messages){
       try{
         if(!isArray(messages)){
@@ -83,17 +96,37 @@
         console.error(err);
       }
     }
-    
-    function setLogo(logoSrc){
-      _logo = logoSrc;
-    }
-    
+
     function setTypingSpeed(speed){
       try{
         if(!isNumber(speed)){
           throw 'SplashLoaderProvider: The given argument should be an Number';
         }
         _typingSpeed = speed;
+      }
+      catch(err){
+        console.error(err);
+      }
+    }
+
+    function setDisableTyping(option){
+      try{
+        if(!isBoolean(option)){
+          throw 'SplashLoaderProvider: The given argument should be an Boolean value';
+        }
+        _disableTyping = option;
+      }
+      catch(err){
+        console.error(err);
+      }
+    }
+
+    function setMessagesInterval(value){
+      try{
+        if(!isNumber(value)){
+          throw 'SplashLoaderProvider: The given argument should be an Number';
+        }
+        _messagesInterval = value;
       }
       catch(err){
         console.error(err);
@@ -133,7 +166,14 @@
         selectedMsg = pickMsg();
         ctrl.opened = true;
         ctrl.message = '';
-        letterType();
+        
+        if(!ctrl.disableTyping) {
+          letterType();
+        }
+        else{
+          showMessage();
+        }
+        
       }
       function getRandomIndex(){
         return Math.floor(Math.random() * (ctrl.messages.length));
@@ -146,6 +186,12 @@
         lastMessageIndex = newIndex;
         return ctrl.messages[newIndex];
       }
+
+      function showMessage(){
+        ctrl.message = selectedMsg;
+        $timeout(init,ctrl.messagesInterval);
+      }
+
       
       function letterType() {
         pos++;
@@ -156,11 +202,11 @@
          ctrl.message = currentMsg + typingMsg;
 
         if (pos < selectedMsg.length) {
-          typeLoop = $timeout(letterType, 100);
-        } 
+          typeLoop = $timeout(letterType, ctrl.typingSpeed);
+        }
         else {
           $timeout.cancel(typeLoop);
-          $timeout(init,5000);
+          $timeout(init,ctrl.messagesInterval);
         }
       }
 
@@ -172,8 +218,12 @@
   function SplashControllerFn(SplashLoader){
     var vm = this;
     vm.opened = false;
+    
     vm.logo = SplashLoader.logoSrc;
     vm.messages = SplashLoader.messages;
+    vm.messagesInterval = SplashLoader.messagesInterval;
+    vm.typingSpeed = SplashLoader.typingSpeed;
+    vm.disableTyping = SplashLoader.disableTyping;
   }
   // END OF DIRECTIVE
 })(window,window.angular);

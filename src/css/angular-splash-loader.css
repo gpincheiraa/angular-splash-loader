@@ -29,8 +29,8 @@ gp-splash-loader #splash-overlay.opened {
 
 gp-splash-loader #page-wrap {
   z-index: 999;
-  position: absolute;
-  background: #F0F0F0;
+  position: fixed;
+  background: #FFFFFF;
   width: 100%;
   height: 80%;
   top: 10%;
@@ -41,13 +41,25 @@ gp-splash-loader #page-wrap {
   -webkit-backface-visibility: hidden;
 }
 
-@media ( max-height: 735px) {
+/* Only Mobile */
+@media (max-width:768px) {
   gp-splash-loader #page-wrap.opened{  
     height: 100%;
     top: 0;
-    position:fixed;
-  };
+  }
+  gp-splash-loader #page-wrap.opened #message-wrap { 
+    margin: 0 10%;
+  }
 }
+/* Only Desktop */
+@media (min-width:769px) {
+  
+  gp-splash-loader #page-wrap.opened{  
+    width: 70%;
+    left: 15%;
+  }
+}
+
 
 gp-splash-loader #page-wrap.closed {
   opacity: 0;
@@ -62,11 +74,11 @@ gp-splash-loader #page-wrap.opened {
 
 gp-splash-loader #loader-wrap {
   width: 30%;
-  height: 70%;
+  height: 60%;
   min-width: 300px;
   max-width: 600px;
   margin: 10px auto;
-  padding-top: 
+  padding-top: 80px; 
 }
 
   gp-splash-loader #logo-wrap {
@@ -88,46 +100,50 @@ gp-splash-loader #loader-wrap {
     opacity: 0.7;
   }
 
-gp-splash-loader #message-wrap {
-  min-width: 1px;
-  margin: 0 auto;
-}
-
-  gp-splash-loader #header-wrap {
-    display: inline-block;
+  gp-splash-loader #spinner {
+    width: 147px;
+    height: 147px;
+    position: relative;
+    top: -150px;
+    margin: 0 auto;
+    border-top: 3px solid rgba(77, 196, 242, 0.8);
+    border-right: 3px solid rgba(77, 196, 242, 0);
+    border-left: 3px solid rgba(77, 196, 242, 0);
+    border-radius: 50%;
+    animation: spin-bot 1s ease-in-out infinite;
+    -moz-animation: spin-bot 1s ease-in-out infinite;
+    -webkit-animation: spin-bot 1s ease-in-out infinite;
   }
 
-gp-splash-loader h1 {
-  font: 32px;
-  color: #4A4949;
-  background-color: #F0F0F0;
+
+gp-splash-loader #message-wrap {
+  margin: 0 25%;
+  min-width: 40%;
+  height: 40%;
+  min-height: 40%;
+  position: absolute;
+  bottom: 0;
+  overflow: hidden;
 }
 
-gp-splash-loader h1::after {
-  content: "|";
-  display: inline-block;
-  font: 40px;
-  color: #4A4949;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-  animation: cursor-flash linear 1.2s infinite;
-  -moz-animation: linear 1.2s infinite;
-  -webkit-animation: linear 1.2s infinite;
-}
+  gp-splash-loader h1 {
+    font: 32px;
+    color: #4A4949;
+    background-color: #FFFFFF;
+    height: 100%;
+  }
 
-gp-splash-loader #spinner {
-  width: 147px;
-  height: 147px;
-  position: relative;
-  top: -150px;
-  margin: 0 auto;
-  border-top: 3px solid rgba(77, 196, 242, 0.8);
-  border-right: 3px solid rgba(77, 196, 242, 0);
-  border-left: 3px solid rgba(77, 196, 242, 0);
-  border-radius: 50%;
-  animation: spin-bot 1s ease-in-out infinite;
-  -moz-animation: spin-bot 1s ease-in-out infinite;
-  -webkit-animation: spin-bot 1s ease-in-out infinite;
-}
+  gp-splash-loader h1::after {
+    content: "|";
+    display: inline-block;
+    font: 40px;
+    color: #4A4949;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    animation: cursor-flash linear 1.2s infinite;
+    -moz-animation: linear 1.2s infinite;
+    -webkit-animation: linear 1.2s infinite;
+  }
+
 
 @keyframes spin-bot {
   0% {
