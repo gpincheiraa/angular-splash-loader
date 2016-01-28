@@ -6,8 +6,8 @@
   ],
   "description": "A pretty loader that shows a configurable messages while a certain logo uses a spin effect",
   "main": [
-    "./dist/angular-splash-loader.js",
-    "./dist/angular-splash-loader.css"
+    "./src/js/angular-splash-loader.js",
+    "./src/css/angular-splash-loader.css"
   ],
   "moduleType": [],
   "keywords": [
