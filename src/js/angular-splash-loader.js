@@ -141,9 +141,9 @@
     .module('ngSplashLoader')
     .directive('gpSplashLoader', directive);
   
-  directive.$inject = ['$timeout'];
+  directive.$inject = ['$timeout', '$compile'];
   
-  function directive($timeout ){
+  function directive($timeout, $compile){
     var ddo = {
       restrict: 'E',
       link: linkFn,
@@ -159,6 +159,10 @@
           selectedMsg,
           lastMessageIndex;
       
+      if(ctrl.disableTyping){
+        element.addClass('no-typing');
+      }
+
       $timeout(init,500);
       
       function init(){

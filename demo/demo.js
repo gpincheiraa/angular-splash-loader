@@ -14,7 +14,7 @@
       .setMessages(['Loading a lot of information, please keep calm. Enjoy this lecture',
                     'If you view this through an mobile device and your connection is slow, wait a while.']);
     
-    SplashLoaderProvider.setDisableTyping(true);
+    //SplashLoaderProvider.setDisableTyping(true);
     SplashLoaderProvider.setMessagesInterval(6000);
   }
 

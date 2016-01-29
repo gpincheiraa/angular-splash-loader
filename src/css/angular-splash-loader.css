@@ -49,6 +49,10 @@ gp-splash-loader #page-wrap {
   }
   gp-splash-loader #page-wrap.opened #message-wrap { 
     margin: 0 10%;
+    font-size: 12px;
+  }
+  gp-splash-loader #page-wrap.opened #message-wrap h1{ 
+    font-size: 22px;
   }
 }
 /* Only Desktop */
@@ -110,9 +114,9 @@ gp-splash-loader #loader-wrap {
     border-right: 3px solid rgba(77, 196, 242, 0);
     border-left: 3px solid rgba(77, 196, 242, 0);
     border-radius: 50%;
-    animation: spin-bot 1s ease-in-out infinite;
-    -moz-animation: spin-bot 1s ease-in-out infinite;
-    -webkit-animation: spin-bot 1s ease-in-out infinite;
+    animation: spin-bot 2s ease-in-out infinite;
+    -moz-animation: spin-bot 2s ease-in-out infinite;
+    -webkit-animation: spin-bot 2s ease-in-out infinite;
   }
 
 
@@ -126,14 +130,15 @@ gp-splash-loader #message-wrap {
   overflow: hidden;
 }
 
-  gp-splash-loader h1 {
+  gp-splash-loader #message-wrap h1 {
     font: 32px;
     color: #4A4949;
     background-color: #FFFFFF;
     height: 100%;
+    line-height: 20px;
   }
 
-  gp-splash-loader h1::after {
+  gp-splash-loader #message-wrap h1::after {
     content: "|";
     display: inline-block;
     font: 40px;
@@ -142,6 +147,14 @@ gp-splash-loader #message-wrap {
     animation: cursor-flash linear 1.2s infinite;
     -moz-animation: linear 1.2s infinite;
     -webkit-animation: linear 1.2s infinite;
+  }
+
+  gp-splash-loader.no-typing #message-wrap h1::after{
+    content: "|";
+    display: none;
+    -moz-animation-property: none;
+    -webkit-animation-property: none;
+    animation-property: none;
   }
 
 
