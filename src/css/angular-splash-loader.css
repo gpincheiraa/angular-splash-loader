@@ -1,5 +1,5 @@
 gp-splash-loader #splash-overlay {
-  z-index: 1;
+  z-index: 998;
   cursor: pointer;
   width: 100%;
   height: 100%;
@@ -97,9 +97,8 @@ gp-splash-loader #loader-wrap {
   }
 
   gp-splash-loader #logo {
-    width: 162px;
-    height: 162px;
-    margin: -5px;
+    width: 152px;
+    height: 142px;
     border-radius: 50%;
     opacity: 0.7;
   }
@@ -114,9 +113,9 @@ gp-splash-loader #loader-wrap {
     border-right: 3px solid rgba(77, 196, 242, 0);
     border-left: 3px solid rgba(77, 196, 242, 0);
     border-radius: 50%;
-    animation: spin-bot 2s ease-in-out infinite;
-    -moz-animation: spin-bot 2s ease-in-out infinite;
-    -webkit-animation: spin-bot 2s ease-in-out infinite;
+    animation: spin-bot 1s ease-in-out infinite;
+    -moz-animation: spin-bot 1s ease-in-out infinite;
+    -webkit-animation: spin-bot 1s ease-in-out infinite;
   }
 
 

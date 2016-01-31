@@ -41,9 +41,14 @@
     .provider('SplashLoader', Provider);
 
   function Provider(){
-    var _messages = ['Message 1', 'Message 2'],
+    var _messages = ['Earth provides enough to satisfy every man\'s needs, but not every man\'s greed.', 
+                     'What you take from the earth, you must give back. That\'s nature\'s way.',
+                     'Those who contemplate the beauty of the earth find reserves of strength that will endure as long as life lasts',
+                     'What makes earth feel like hell is our expectation that it should feel like heaven.'],
+        
+
         _typingSpeed = 100,
-        _logo = 'https://dinex.cl/webapp/img/dinex-icon-color-alpha-shadow.svg',
+        _logo = 'https://pixabay.com/static/uploads/photo/2014/04/03/10/33/earth-310882_960_720.png',
         _disableTyping = false,
         _messagesInterval = 5000;
     

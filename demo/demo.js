@@ -10,11 +10,11 @@
   configFn.$inject = ['SplashLoaderProvider'];
 
   function configFn(SplashLoaderProvider){
-    SplashLoaderProvider
-      .setMessages(['Loading a lot of information, please keep calm. Enjoy this lecture',
-                    'If you view this through an mobile device and your connection is slow, wait a while.']);
+    // SplashLoaderProvider
+    //   .setMessages(['Loading a lot of information, please keep calm. Enjoy this lecture',
+    //                 'If you view this through an mobile device and your connection is slow, wait a while.']);
     
-    //SplashLoaderProvider.setDisableTyping(true);
+    //SplashLoaderProvider.setLogoSrc('https://dinex.cl/webapp/img/dinex-icon-color-alpha-shadow.svg');
     SplashLoaderProvider.setMessagesInterval(6000);
   }
 
