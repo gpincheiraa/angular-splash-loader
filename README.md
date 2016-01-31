@@ -19,7 +19,7 @@ Add the module `ngSplashLoader` in you main module app
 
 ```javascript
   angular
-    .module('your_main_module', ['ngSplashLoader'])
+    .module('your_module', ['ngSplashLoader']);
   
 ```
 
@@ -37,8 +37,38 @@ Use it in your controller injecting `SplashLoader` service.
         //Close the splash loader
         SplashLoader.close();
     
-    }])
+    }]);
 ```
+
+If you want, you can configure some options of splash loader injecting the `SplashLoaderProvider`.
+
+```javascript
+  angular
+    .module('your_module')
+    .config(['SplashLoaderProvider', function(SplashLoaderProvider){
+        
+        //Set messages to be displayed.
+        var arrayWithMessages = ['Listen Jazz it's good for your brain and your spirit.,
+                                 'Imagination will often carry us to worlds that never were. But without it we go nowhere. '];
+
+        SplashLoaderProvider.setMessages(arrayWithMessages);
+
+        //Set the logo url
+        SplashLoaderProvider.setLogoSrc('http://your_url_logo.png');
+        
+        //Set the speed of the phrase typying (in milliseconds)
+        SplashLoaderProvider.setTypingSpeed(2000);
+        
+        //Disable the typing mode
+        SplashLoaderProvider.setDisableTyping(true);
+
+        //Set the interval of the messages appears (in milliseconds)
+        SplashLoaderProvider.setMessagesInterval(5000);
+
+    }]);
+```
+
+
   
 #Roadmap
 
