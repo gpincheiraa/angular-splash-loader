@@ -48,7 +48,7 @@ If you want, you can configure some options of splash loader injecting the `Spla
     .config(['SplashLoaderProvider', function(SplashLoaderProvider){
         
         //Set messages to be displayed.
-        var arrayWithMessages = ['Listen Jazz it's good for your brain and your spirit.,
+        var arrayWithMessages = ['Listen Jazz it's good for your brain and your spirit.',
                                  'Imagination will often carry us to worlds that never were. But without it we go nowhere. '];
 
         SplashLoaderProvider.setMessages(arrayWithMessages);
