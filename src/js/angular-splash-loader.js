@@ -215,7 +215,8 @@
         }
         else {
           $timeout.cancel(typeLoop);
-          $timeout(init,ctrl.messagesInterval);
+          if(ctrl.messages.length > 1)
+            $timeout(init,ctrl.messagesInterval);
         }
       }
 
