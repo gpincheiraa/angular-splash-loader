@@ -170,7 +170,8 @@
       
       function init(){
         pos = 0;
-        selectedMsg = pickMsg();
+        selectedMsg = ctrl.messages.length > 1  ? pickMsg()
+                                                : ctrl.messages[0];
         ctrl.opened = true;
         ctrl.message = '';
         
@@ -196,7 +197,8 @@
 
       function showMessage(){
         ctrl.message = selectedMsg;
-        $timeout(init,ctrl.messagesInterval);
+        if(ctrl.messages.length > 1)
+          $timeout(init,ctrl.messagesInterval);
       }
 
       
